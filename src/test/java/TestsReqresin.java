@@ -1,12 +1,9 @@
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static java.nio.file.Paths.get;
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 
 public class TestsReqresin {
@@ -21,7 +18,7 @@ public class TestsReqresin {
                 .post("https://reqres.in/api/login")
                 .then()
                 .statusCode(200)
-                .body("token", Matchers.is("QpwL5tke4Pnpja7X4"));
+                .body("token", Matchers.notNullValue());
     }
 
     @Test
