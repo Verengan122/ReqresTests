@@ -36,6 +36,7 @@ public class TestsReqresin {
                 .statusCode(400)
                 .body("error", Matchers.is("Missing password"));
     }
+
     @Test
     void createTest() {
         String user = "{\"name\": \"morpheus\", " +
@@ -50,21 +51,22 @@ public class TestsReqresin {
                 .body("name", Matchers.is("morpheus"), "job", Matchers.is("leader"));
     }
 
-        @Test
+    @Test
     void listTest() {
-             RestAssured.get("https://reqres.in/api/users?page=2")
-                   .then()
-                   .statusCode(200)
-                   .body("total", is(12));
-        }
-        @Test
-    void notFoundTest() {
-             RestAssured.get("https://reqres.in/api/unknown/23")
-                   .then()
-                   .statusCode(404);
-
-        }
+        RestAssured.get("https://reqres.in/api/users?page=2")
+                .then()
+                .statusCode(200)
+                .body("total", is(12));
     }
+
+    @Test
+    void notFoundTest() {
+        RestAssured.get("https://reqres.in/api/unknown/23")
+                .then()
+                .statusCode(404);
+
+    }
+}
 
 
 
